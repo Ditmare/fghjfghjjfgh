@@ -4,24 +4,15 @@ def calculate_entropy(veroyatn):
     return -sum(p * math.log2(p) for p in veroyatn if p > 0)
 
 def shannon_fano(veroyatn):
-    symbols = list(range(len(veroyatn)))
-    sorted_symbols = sorted(zip(veroyatn, symbols), reverse=True)
+    # Сортируем вероятности от большего к меньшему
+    sorted_symbols = sorted(enumerate(veroyatn), key=lambda x: x[1], reverse=True)
     codes = [""] * len(veroyatn)
 
-    def assign_codes(veroyatn, prefix=""):
-        if len(veroyatn) == 1:
-            codes[veroyatn[0][1]] = prefix
-            return
-        total = sum(p[0] for p in veroyatn)
-        summa = 0
-        for i, (p, _) in enumerate(veroyatn):
-            summa += p
-            if summa >= total / 2:
-                assign_codes(veroyatn[:i + 1], prefix + "0")
-                assign_codes(veroyatn[i + 1:], prefix + "1")
-                break
+    # Присваиваем коды
+    for i, (index, _) in enumerate(sorted_symbols):
+        # Код для первого символа будет "1", для второго "01", для третьего "001" и так далее
+        codes[index] = '0' * i + '1'
 
-    assign_codes(sorted_symbols)
     return codes
 
 def main():
