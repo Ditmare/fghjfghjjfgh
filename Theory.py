@@ -43,6 +43,11 @@ def main():
     print("Средняя длина кода l: {:.3f} бит".format(l))
     print("Избыточность R(A): {:.3f} бит".format(R_A))
     print("Эффективная пропускная способность C_eff: {:.3f} бит".format(C_eff))
+    
+    # Вывод кодов Шеннона-Фано
+    print("\nКоды Шеннона-Фано для символов:")
+    for i, code in enumerate(codes):
+        print("Символ {}: Код {}".format(i + 1, code))
 
 if __name__ == "__main__":
     main()
