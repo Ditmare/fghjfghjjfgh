@@ -31,7 +31,7 @@ def main():
     for i in range(N):
         while True:
             try:
-                p = float(input(f"Введите вероятность символа {i + 1} (0 < p <= 1): "))
+                p = float(input("Введите вероятность символа {} (0 < p <= 1): ".format(i + 1)))
                 if 0 < p <= 1:
                     veriyatn.append(p)
                     break
@@ -47,12 +47,11 @@ def main():
     R_A = l - H_A
     C_eff = sum(p * len(code) for p, code in zip(veriyatn, codes))
 
-    print(f"Энтропия H(A): {H_A:.3f} бит")
-    print(f"Максимальная энтропия Hmax(A): {H_max_A:.3f} бит")
-    print(f"Средняя длина кода l: {l:.3f} бит")
-    print(f"Избыточность R(A): {R_A:.3f} бит")
-    print(f"Эффективная пропускная способность C_eff: {C_eff:.3f} бит")
+    print("Энтропия H(A): {:.3f} бит".format(H_A))
+    print("Максимальная энтропия Hmax(A): {:.3f} бит".format(H_max_A))
+    print("Средняя длина кода l: {:.3f} бит".format(l))
+    print("Избыточность R(A): {:.3f} бит".format(R_A))
+    print("Эффективная пропускная способность C_eff: {:.3f} бит".format(C_eff))
 
 if __name__ == "__main__":
     main()
-
