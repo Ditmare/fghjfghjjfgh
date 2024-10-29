@@ -1,7 +1,7 @@
 import math
 
 def calculate_entropy(veroyatn):
-    return -sum(p * math.log2(p) for p in veroyatn)
+    return -sum(p * math.log2(p) for p in veroyatn if p > 0)
 
 def shannon_fano(veroyatn):
     symbols = list(range(len(veroyatn)))
@@ -26,7 +26,19 @@ def shannon_fano(veroyatn):
 
 def main():
     N = 8
-    veriyatn = [float(input(f"Введите вероятность символа {i + 1} (0 < p <= 1): ")) for i in range(N)]
+    veriyatn = []
+    
+    for i in range(N):
+        while True:
+            try:
+                p = float(input(f"Введите вероятность символа {i + 1} (0 < p <= 1): "))
+                if 0 < p <= 1:
+                    veriyatn.append(p)
+                    break
+                else:
+                    print("Ошибка: вероятность должна быть в диапазоне (0, 1]. Попробуйте снова.")
+            except ValueError:
+                print("Ошибка: введите корректное число.")
 
     H_A = calculate_entropy(veriyatn)
     H_max_A = math.log2(N)
@@ -43,3 +55,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
